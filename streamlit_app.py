@@ -8,7 +8,7 @@ from llama_index import SimpleDirectoryReader
 
 st.title("Reports Reader")
 
-openai_api_key = "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"
+openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
 
 data_directory = 'data/'
 
