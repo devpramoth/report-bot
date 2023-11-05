@@ -8,10 +8,10 @@ from llama_index import SimpleDirectoryReader
 
 st.title("Reports Reader")
 
-OPENAI_API_KEY = st.text_input("OpenAI API Key", key="OPENAI_API_KEY", type="password")
-submitted = st.button("Submit")
-
-print(OPENAI_API_KEY)
+headers = {
+    "OPENAI_API_KEY": st.secrets["OPENAI_API_KEY"],
+    "content-type": "applocation/json"
+}
 
 data_directory = 'data/'
 
