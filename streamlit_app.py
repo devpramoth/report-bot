@@ -10,6 +10,8 @@ st.title("Reports Reader")
 
 OPENAI_API_KEY = st.text_input("OpenAI API Key", key="OPENAI_API_KEY", type="password")
 
+print(OPENAI_API_KEY)
+
 data_directory = 'data/'
 
 def get_document_names(directory):
