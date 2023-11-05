@@ -8,7 +8,7 @@ from llama_index import SimpleDirectoryReader
 
 st.title("Reports Reader")
 
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+openai_api_key = st.secrets["OPENAI_API_KEY"]
 
 data_directory = 'data/'
 
