@@ -6,10 +6,26 @@ import openai
 from llama_index import SimpleDirectoryReader
 
 
-st.title("FINANCE Docs")
+st.title("Reports Reader")
 
 os.environ['OPENAI_API_KEY'] = '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'
 
+data_directory = 'data/'
+
+def get_document_names(directory):
+    """ Get a list of document names in the specified directory """
+    # List all files in the directory
+    return [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
+
+# Use Streamlit's sidebar to list document names with numbers
+st.sidebar.title('Document List')
+
+# Get list of documents
+documents = get_document_names(data_directory)
+
+# Use a sidebar for display with numbers
+for idx, document in enumerate(documents, start=1):
+    st.sidebar.text(f"{idx}. {document}")
 
 if "messages" not in st.session_state.keys(): # Initialize the chat messages history
     st.session_state.messages = [
