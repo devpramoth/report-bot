@@ -10,6 +10,8 @@ st.title("Reports Reader")
 
 openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
 
+openai.api_key = openai_api_key
+
 data_directory = 'data/'
 
 def get_document_names(directory):
@@ -42,6 +44,8 @@ def load_data():
         return index
 
 index = load_data()
+
+
 
 if "chat_engine" not in st.session_state.keys(): # Initialize the chat engine
         st.session_state.chat_engine = index.as_chat_engine(chat_mode="condense_question", verbose=True)
