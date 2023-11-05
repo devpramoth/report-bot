@@ -29,7 +29,7 @@ for idx, document in enumerate(documents, start=1):
 
 if "messages" not in st.session_state.keys(): # Initialize the chat messages history
     st.session_state.messages = [
-        {"role": "assistant", "content": "Ask me a question about Streamlit's open-source Python library!"}
+        {"role": "assistant", "content": "Ask me anything from the document list."}
     ]
 
 @st.cache_resource(show_spinner=False)
