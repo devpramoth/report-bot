@@ -1,38 +1,16 @@
-import os
 import streamlit as st
 from llama_index import VectorStoreIndex, ServiceContext, Document
 from llama_index.llms import OpenAI
 import openai
 from llama_index import SimpleDirectoryReader
+import os
 
 
-st.title("Reports Reader")
-
-headers = {
-    "OPENAI_API_KEY": st.secrets["OPENAI_API_KEY"],
-    "content-type": "applocation/json"
-}
-
-data_directory = 'data/'
-
-def get_document_names(directory):
-    """ Get a list of document names in the specified directory """
-    # List all files in the directory
-    return [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
-
-# Use Streamlit's sidebar to list document names with numbers
-st.sidebar.title('Document List')
-
-# Get list of documents
-documents = get_document_names(data_directory)
-
-# Use a sidebar for display with numbers
-for idx, document in enumerate(documents, start=1):
-    st.sidebar.text(f"{idx}. {document}")
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 if "messages" not in st.session_state.keys(): # Initialize the chat messages history
     st.session_state.messages = [
-        {"role": "assistant", "content": "Ask me anything from the document list."}
+        {"role": "assistant", "content": "Ask me a question about Streamlit's open-source Python library!"}
     ]
 
 @st.cache_resource(show_spinner=False)
@@ -45,8 +23,6 @@ def load_data():
         return index
 
 index = load_data()
-
-
 
 if "chat_engine" not in st.session_state.keys(): # Initialize the chat engine
         st.session_state.chat_engine = index.as_chat_engine(chat_mode="condense_question", verbose=True)
